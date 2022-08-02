@@ -5,7 +5,7 @@ resource "aws_instance" "web" {
   key_name = "terraform"
 #  security_groups = ["sg-015fd4777c58fdc9c"]
 provisioner "file" {
-     source = "../index.html"
+     source = "index.html"
      destination = "/tmp/index.html"
      on_failure = continue
   }
@@ -14,7 +14,7 @@ provisioner "file" {
      host = self.public_ip
      user = "ec2-user"
      password = ""
-     private_key = file("../terraform.pem")
+     private_key = file("terraform.pem")
   }
 provisioner "local-exec" {
      command = "echo ${self.private_ip} > private_ip.txt"
