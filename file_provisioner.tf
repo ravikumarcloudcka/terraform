@@ -16,10 +16,6 @@ provisioner "file" {
      password = ""
      private_key = file("terraform.pem")
   }
-provisioner "local-exec" {
-     command = "echo ${self.private_ip} > private_ip.txt"
-     when = destroy
-  }
 }
 /*
 data "aws_ami" "web" {
